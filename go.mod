@@ -1,4 +1,4 @@
-module github.com/TruthHun/html2json
+module github.com/xiaonian0430/html2json
 
 go 1.13
 
