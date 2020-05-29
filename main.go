@@ -14,7 +14,7 @@
 
 package main
 
-import "html2json/cmd"
+import "github.com/xiaonian0430/html2json/cmd"
 
 func main() {
 	cmd.Execute()

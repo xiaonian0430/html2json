@@ -20,7 +20,7 @@ import (
 	"io/ioutil"
 	"os"
 
-	"html2json/html2json"
+	"github.com/xiaonian0430/html2json/html2json"
 
 	"github.com/spf13/cobra"
 )

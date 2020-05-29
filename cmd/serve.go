@@ -24,7 +24,7 @@ import (
 	"strconv"
 	"time"
 
-	"html2json/html2json"
+	"github.com/xiaonian0430/html2json/html2json"
 
 	"github.com/gin-contrib/cors"
 	ginzip "github.com/gin-contrib/gzip"
