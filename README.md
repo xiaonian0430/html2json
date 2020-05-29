@@ -4,13 +4,13 @@
 
 ## 介绍
 
-在开发 [BookStack](https://gitee.com/truthhun/BookStack) 的配套微信小程序 [BookChat](https://gitee.com/truthhun/BookChat) 
-以及使用 `uni-app` 开发配套的手机APP应用 [BookChatApp](https://gitee.com/truthhun/BookChatApp)的过程中，
+在开发 [ShareKnow](https://gitee.com/xiaonian0430/ShareKnow) 
+配套使用 `uni-app` 开发配套的手机APP应用 [ShareKnowApp](https://gitee.com/xiaonian0430/ShareKnowApp)的过程中，
 我尝试了很多种开源的小程序HTML解析渲染组件，但都不是很满意。
 
 后来将HTML内容在后端解析，并在小程序段使用自带的`rich-text`组件进行渲染，性能、稳定性以及渲染效果都比较符合预期，尽管并没有第三方HTML渲染工具那样提供图片预览的功能。
 
-目前已经在`BookStack` v2.1 版本中使用了。
+目前已经在`ShareKnow` v2.1 版本中使用了。
 
 ## 特点
 
@@ -73,7 +73,7 @@ GET
 
 **使用示例**
 
-> http://localhost:8888/html2json?timeout=5&url=https://gitee.com/truthhun/BookStack
+> http://localhost:8888/html2json?timeout=5&url=https://gitee.com/xiaonian0430/ShareKnow
 
 
 ##### 解析Form表单提交HTML的内容
@@ -90,7 +90,7 @@ POST
 **请求参数**
 
 - `html` - HTML内容字符串
-- `domain` - 图片等静态资源域名，用于拼装图片等链接。需带 `http` 或 `https`，如 `https://static.bookstack.cn`
+- `domain` - 图片等静态资源域名，用于拼装图片等链接。需带 `http` 或 `https`，如 `https://static.sk.showcm.top`
 
 
 ##### 解析form表单提交的markdown内容
@@ -107,7 +107,7 @@ POST
 **请求参数**
 
 - `markdown` - [必需] markdown内容字符串
-- `domain` - 图片等静态资源域名，用于拼装图片等链接。需带 `http` 或 `https`，如 `https://static.bookstack.cn`
+- `domain` - 图片等静态资源域名，用于拼装图片等链接。需带 `http` 或 `https`，如 `https://static.sk.showcm.top`
 
 
 ### 以包的形式引用(针对Go语言)
@@ -115,7 +115,7 @@ POST
 
 #### 安装
 ```
-go get -v github.com/TruthHun/html2json
+go get -v github.com/xiaonian0430/html2json
 ```
 
 #### 使用示例
@@ -128,7 +128,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/TruthHun/html2json/html2json"
+	"github.com/xiaonian0430/html2json/html2json"
 )
 
 func main()  {
@@ -140,10 +140,10 @@ func main()  {
 	hello world!
 	<span>this is a span</span>
 	a b c d e
-	<img src="https://www.bookstack.cn/static/images/logo.png"/>
+	<img src="https://sk.showcm.top/static/images/logo.png"/>
 	<audio src="helloworld.mp3"></audio>
 	<video src="../bookstack.mp4"></video>
-<a href="https://www.bookstack.cn">书栈网 - 分享知识，共享智慧</a>
+<a href="https://sk.showcm.top">分享知识，共享智慧</a>
 </div>
 <iframe src="https://www.baidu.com" frameborder="0"></iframe>
 <pre>
@@ -151,7 +151,7 @@ func main()  {
 </pre>
 `
 	now:=time.Now()
-	nodes,err:=rt.Parse(htmlStr,"https://www.bookstack.cn/static/")
+	nodes,err:=rt.Parse(htmlStr,"https://sk.showcm.top/static/")
 	if err!=nil{
 		panic(err)
 	}
@@ -191,7 +191,7 @@ func toJSON(v interface{}) (js string) {
 		"name": "img",
 		"attrs": {
 			"class": "tag-img",
-			"src": "https://www.bookstack.cn/static/images/logo.png"
+			"src": "https://sk.showcm.top/static/images/logo.png"
 		}
 	}, {
 		"type": "text",
@@ -200,11 +200,11 @@ func toJSON(v interface{}) (js string) {
 		"name": "a",
 		"attrs": {
 			"class": "tag-audio",
-			"href": "https://www.bookstack.cn/static/helloworld.mp3",
+			"href": "https://sk.showcm.top/static/helloworld.mp3",
 		},
 		"children": [{
 			"type": "text",
-			"text": " [audio] https://www.bookstack.cn/static/helloworld.mp3 "
+			"text": " [audio] https://sk.showcm.top/static/helloworld.mp3 "
 		}]
 	}, {
 		"type": "text",
@@ -213,11 +213,11 @@ func toJSON(v interface{}) (js string) {
 		"name": "a",
 		"attrs": {
 			"class": "tag-video",
-			"href": "https://www.bookstack.cn/bookstack.mp4",
+			"href": "https://sk.showcm.top/bookstack.mp4",
 		},
 		"children": [{
 			"type": "text",
-			"text": " [video] https://www.bookstack.cn/bookstack.mp4 "
+			"text": " [video] https://sk.showcm.top/bookstack.mp4 "
 		}]
 	}, {
 		"type": "text",
@@ -226,7 +226,7 @@ func toJSON(v interface{}) (js string) {
 		"name": "a",
 		"attrs": {
 			"class": "tag-a",
-			"href": "https://www.bookstack.cn"
+			"href": "https://sk.showcm.top"
 		},
 		"children": [{
 			"type": "text",
